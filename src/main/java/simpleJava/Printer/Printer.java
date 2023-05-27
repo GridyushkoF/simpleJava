@@ -32,10 +32,10 @@ public class Printer {
             case YELLOW -> System.out.println(YELLOW + text + RESET);
         }
     }
-    public static <T> void p(T text) {
+    public  <T> void p(T text) {
         System.out.print(text);
     }
-    public static <T> void p(T text, Color color) {
+    public  <T> void p(T text, Color color) {
         switch (color) {
             case RED -> System.out.print(RED + text + RESET);
             case BLUE -> System.out.print(BLUE + text + RESET);
@@ -58,24 +58,20 @@ public class Printer {
     }
 
     public <T> void printArray(T[] array) {
-        FOR.run(0, array.length, i -> {
-            pln(array[i]);
-        });
+        FOR.run(0, array.length, i -> pln(array[i]));
     }
-    public static void printArray(int[] array) {
+    public void printArray(int[] array) {
         FOR.run(0, array.length, i -> P.pln(array[i]));
     }
-    public static void printArray(byte[] array) {
+    public void printArray(byte[] array) {
+        FOR.run(0, array.length, i -> P.pln(array[i]));
+    }
+    public void printArray(short[] array) {
         FOR.run(0, array.length, i -> {
             P.pln(array[i]);
         });
     }
-    public static void printArray(short[] array) {
-        FOR.run(0, array.length, i -> {
-            P.pln(array[i]);
-        });
-    }
-    public static void printArray(char[] array) {
+    public void printArray(char[] array) {
         FOR.run(0, array.length, i -> {
             P.pln(array[i]);
         });
