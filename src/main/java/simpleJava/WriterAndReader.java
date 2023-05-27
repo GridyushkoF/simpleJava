@@ -4,7 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.nio.file.Files;
 import java.util.List;
-public class SimpleFiles {
+public class WriterAndReader {
     public static String getTextFromFile(File f) {
         StringBuilder resultBuilder = new StringBuilder();
         try {

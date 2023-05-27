@@ -6,8 +6,11 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="simpleJava" />
+        <module name="com.GridyushkoF.simpleJava" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="simpleJava" target="19" />
+    </bytecodeTargetLevel>
   </component>
 </project>

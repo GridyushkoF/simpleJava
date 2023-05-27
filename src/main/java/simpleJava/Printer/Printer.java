@@ -1,24 +1,25 @@
 package simpleJava.Printer;
-
-import simpleJava.simpleFor.SimpleFor;
+import simpleJava.simpleFor.ForLoop;
 
 import java.util.List;
 import java.util.Map;
 
 public class Printer {
-    public static final String RESET = "\u001B[0m";
-    public static final String BLACK = "\u001B[30m";
-    public static final String RED = "\u001B[31m";
-    public static final String GREEN = "\u001B[32m";
-    public static final String YELLOW = "\u001B[33m";
-    public static final String BLUE = "\u001B[34m";
-    public static final String PURPLE = "\u001B[35m";
-    public static final String CYAN = "\u001B[36m";
-    public static final String WHITE = "\u001B[37m";
-    public static <T> void pln (T text) {
+    private static final Printer P = new Printer();
+    private static final ForLoop FOR = new ForLoop();
+    private static final String RESET = "\u001B[0m";
+    private static final String BLACK = "\u001B[30m";
+    private static final String RED = "\u001B[31m";
+    private static final String GREEN = "\u001B[32m";
+    private static final String YELLOW = "\u001B[33m";
+    private static final String BLUE = "\u001B[34m";
+    private static final String PURPLE = "\u001B[35m";
+    private static final String CYAN = "\u001B[36m";
+    private static final String WHITE = "\u001B[37m";
+    public  <T> void pln(T text) {
         System.out.println(text);
     }
-    public static <T> void pln (T text, Color color) {
+    public <T> void pln(T text, Color color) {
         switch (color) {
             case RED -> System.out.println(RED + text + RESET);
             case BLUE -> System.out.println(BLUE + text + RESET);
@@ -31,10 +32,10 @@ public class Printer {
             case YELLOW -> System.out.println(YELLOW + text + RESET);
         }
     }
-    public static <T> void p (T text) {
+    public static <T> void p(T text) {
         System.out.print(text);
     }
-    public static <T> void p (T text, Color color) {
+    public static <T> void p(T text, Color color) {
         switch (color) {
             case RED -> System.out.print(RED + text + RESET);
             case BLUE -> System.out.print(BLUE + text + RESET);
@@ -47,44 +48,39 @@ public class Printer {
             case YELLOW -> System.out.print(YELLOW + text + RESET);
         }
     }
-
-
-    public static<T,Y> void printMap (Map<T,Y> map) {
-        for (Map.Entry entry : map.entrySet()) {
-            pln(CYAN + entry.getKey() + RESET +" -> "  + entry.getValue());
+    public <T, Y> void printMap(Map<T, Y> map) {
+        for (Map.Entry<T,Y> entry : map.entrySet()) {
+            pln(CYAN + entry.getKey() + RESET + " -> " + entry.getValue());
         }
     }
-    public static <T> void printList (List<T> list) {
-        list.forEach(Printer::pln);
-    }
-    public static <T>void printArray (T[] array) {
-        SimpleFor.forI(0,array.length, i -> {
-            pln(array[i]);
-        });
-    }
-    public static void printArray (int[] array) {
-        SimpleFor.forI(0,array.length, i -> {
-            pln(array[i]);
-        });
-    }
-    public static void printArray (byte[] array) {
-        SimpleFor.forI(0,array.length, i -> {
-            pln(array[i]);
-        });
-    }
-    public static void printArray (short[] array) {
-        SimpleFor.forI(0,array.length, i -> {
-            pln(array[i]);
-        });
-    }
-    public static void printArray (char[] array) {
-        SimpleFor.forI(0,array.length, i -> {
-            pln(array[i]);
-        });
-    }
-    public static <T> void printList (List<T> list, Color color) {
-        list.forEach(element -> Printer.pln(element,color));
+    public <T> void printList(List<T> list) {
+        list.forEach(System.out::println);
     }
 
+    public <T> void printArray(T[] array) {
+        FOR.run(0, array.length, i -> {
+            pln(array[i]);
+        });
+    }
+    public static void printArray(int[] array) {
+        FOR.run(0, array.length, i -> P.pln(array[i]));
+    }
+    public static void printArray(byte[] array) {
+        FOR.run(0, array.length, i -> {
+            P.pln(array[i]);
+        });
+    }
+    public static void printArray(short[] array) {
+        FOR.run(0, array.length, i -> {
+            P.pln(array[i]);
+        });
+    }
+    public static void printArray(char[] array) {
+        FOR.run(0, array.length, i -> {
+            P.pln(array[i]);
+        });
+    }
+    public <T> void printList(List<T> list, Color color) {
+        list.forEach(element -> P.pln(element, color));
+    }
 }
-
